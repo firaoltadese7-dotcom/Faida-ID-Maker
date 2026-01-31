@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF → ID Card</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f5f5f5; text-align: center; padding: 50px; }
+        h2 { color: #333; }
+        form { background: #fff; padding: 30px; border-radius: 10px; display: inline-block; }
+        button { padding: 10px 20px; border-radius: 5px; background: #007BFF; color: #fff; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .preview img { max-width: 200px; margin: 5px; border-radius: 5px; border: 1px solid #ccc; }
+    </style>
+</head>
+<body>
+    <h2>Upload PDF to Generate ID Card</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="pdf" accept="application/pdf" required>
+        <br><br>
+        <button type="submit">Generate ID Card</button>
+    </form>
+
+    {% if images %}
+        <h3>All Extracted Images:</h3>
+        <div class="preview">
+            {% for img in images %}
+                <img src="{{ url_for('static', filename='extracted_images/' + img.split('/')[-1]) }}">
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if card_url %}
+        <h3>Generated ID Card (p0_0 photo):</h3>
+        <div class="preview">
+            <img src="{{ card_url }}" alt="ID Card">
+            <p><a href="{{ card_url }}" download>Download ID Card</a></p>
+        </div>
+    {% endif %}
+</body>
+</html>
