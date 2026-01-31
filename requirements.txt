@@ -11,4 +11,5 @@ packaging>=26.0
 Pillow
 pytesseract
 ethiopian-date
+Flask-SQLAlchemy
 
