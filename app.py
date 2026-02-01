@@ -200,7 +200,7 @@ def extract_pdf_data(pdf_path, image_paths):
         "region": page.get_textbox(fitz.Rect(150, 290, 253, 300)).strip(),
         "zone": page.get_textbox(fitz.Rect(150, 320, 320, 330)).strip(),
         "woreda": page.get_textbox(fitz.Rect(150, 350, 320, 400)).strip(),
-        "fan": fan_number,
+        "fan": page.get_textbox(fitz.Rect(70, 220, 150, 230)).strip(),
     }
     doc.close()
     return data
@@ -1934,4 +1934,4 @@ def logout():
     return redirect(url_for('login'))
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debugTrue, host='0.0.0.0', port=5000)
